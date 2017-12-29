@@ -9,14 +9,11 @@ if __name__ == "__main__":
     df_train, df_test = load_data()
 
     # Fit the model
-    model, (X_val, y_val), cols = fit(df_train, feat_list=defines.SEL_FEATURES, model_name='rfr', do_grid=False)
+    model, (X_val, y_val), cols = fit(df_train, feat_list=defines.SEL_FEATURES, model_name='etr', do_grid=False)
 
     # Print the score
     _, score = get_preds_and_score(model, X_val, y_val)
     print(' score = {0:.3f}'.format(score))
-
-    # Dump the models
-    pickle.dump(model, open('model_{}.pkl'.format(defines.TAG), 'wb'))
 
     # Predictions for the test dataset
     labels = df_test['label'].as_matrix()
@@ -31,3 +28,6 @@ if __name__ == "__main__":
 
     # Create the submission file
     df_test[['id', 'visitors']].to_csv('sub_{}.csv'.format(defines.TAG), index=False)
+
+    # Dump the models
+    pickle.dump(model, open('model_{}.pkl'.format(defines.TAG), 'wb'))

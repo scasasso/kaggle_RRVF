@@ -1,4 +1,4 @@
-name: ml-bleed-edge
+name: kaggle-rrvf
 channels:
 - defaults
 - conda-forge

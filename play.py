@@ -2,7 +2,7 @@ from pprint import pprint
 import pandas as pd
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import make_scorer
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestRegressor, ExtraTreesRegressor
 from xgboost import XGBRegressor
 from utils import *
 import defines
@@ -106,6 +106,20 @@ def fit(df_train, feat_list, model_name='rfr', do_grid=False, f_val=0.1):
                                       random_state=42,
                                       verbose=10,
                                       n_jobs=-1)
+
+        params = {'n_estimators': [30, 50],
+                  'min_samples_split': [50, 100],
+                  'max_features': [0.5, 0.8]}
+
+    elif model_name == 'etr':
+
+        # Random Forest
+        model = ExtraTreesRegressor(n_estimators=200,
+                                    max_features=None,
+                                    min_samples_split=2,
+                                    random_state=42,
+                                    verbose=10,
+                                    n_jobs=-1)
 
         params = {'n_estimators': [30, 50],
                   'min_samples_split': [50, 100],
