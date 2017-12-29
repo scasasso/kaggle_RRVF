@@ -13,7 +13,11 @@ For instance, to create a model for each latency value:
 ```bash
 python fit_fixed_latency.py
 ```
-All the "fit scripts" create a `.pkl` file with the model and the `.csv` to be submitted to Kaggle.
+All the "fit scripts" create a `.pkl` file with the model and the `.csv` to be submitted to Kaggle.  
+The scripts assume that there is a `data` directory with 2 files in it:  
+- `train.tsv`  
+- `test.tsv`
+ 
 
 ## Configurations
 Configurables are defined in `defines.py`
